@@ -185,18 +185,18 @@ void setup() {
 }
 
 void loop() {
-  DateTime sekarang = rtc.now();
+  DateTime t = rtc.now();
   for (int i = 0; i < JUMLAH_JADWAL; i++) {
-    if (sekarang.hour() == jadwal[i].jam &&
-        sekarang.minute() == jadwal[i].menit &&
+    if (t.hour() == jadwal[i].jam &&
+        t.minute() == jadwal[i].menit &&
         !sudahBunyi[i]) {
       bunyikanAlarm(i);
     }
   }
   // Reset penanda tiap tengah malam supaya jadwal besok bunyi lagi
-  if (sekarang.hour() == 0 && sekarang.minute() == 0) {
+  if (t.hour() == 0 && t.minute() == 0) {
     for (int i = 0; i < JUMLAH_JADWAL; i++) sudahBunyi[i] = false;
   }
-  tampilkanJam(sekarang);
+  tampilkanJam(t);
   delay(1000);
 }
